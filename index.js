@@ -16,8 +16,7 @@ function getSession(id) {
     }
 
     async function analyzeMessage(text, userName) {
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-        const prompt = `你是聚餐分帳助手，從訊息判斷意圖，只輸出JSON（無markdown）：{"action":"add"|"summary"|"clear"|"list"|"help"|"none","payment":{"payer":"姓名","amount":數字,"description":"品項"}|null,"reply":"繁體中文回覆"}
+  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });        const prompt = `你是聚餐分帳助手，從訊息判斷意圖，只輸出JSON（無markdown）：{"action":"add"|"summary"|"clear"|"list"|"help"|"none","payment":{"payer":"姓名","amount":數字,"description":"品項"}|null,"reply":"繁體中文回覆"}
         用戶：${userName}\n訊息：${text}`;
           const result = await model.generateContent(prompt);
             const raw = result.response.text().trim().replace(/```json|```/g,"").trim();
